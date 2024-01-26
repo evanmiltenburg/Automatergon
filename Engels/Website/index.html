@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8">
+    <title>Automatergon</title>
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet'>
+    <style>
+        @media screen {
+                body {
+                    font-family: 'Inconsolata';
+                    background-color: floralwhite;
+                }
+                #content{text-align: center;}
+                #resultaat-inhoud{
+                    border-style: dashed;
+                    border-width: thin;
+                    padding: 5px;
+                    padding-right: 30px;
+                    background-color: white;
+                    font-size: 12px;
+                    white-space: pre;
+                }
+                #generation-details{
+                    display: none;
+                }
+        }
+        @media print {
+            @page {
+                size: auto;
+                margin: 0mm;
+            }
+
+            h1{
+                font-size:45px;
+            }
+            body 
+            {
+                font-family: 'Inconsolata';
+                text-align: center;
+                background-color:#FFFFFF;
+                margin: 0px;  /* this affects the margin on the content before sending to printer */
+           }
+            
+            
+            form {
+                display: none;
+            }
+            
+            #resultaat-inhoud{
+                    border-style: dashed;
+                    border-width: thin;
+                    padding: 5px;
+                    padding-right: 30px;
+                    background-color: white;
+                    font-size: 12px;
+                    white-space: pre;
+                }
+            #generation-details{
+                    margin-left: 2cm;
+                    margin-right: 2cm;
+                    font-size: 10px;
+                }
+            
+            #author {
+                font-size: 10px;
+                position: fixed;
+                left: 50px;
+                bottom: 20px;
+            }
+            #github {
+                display: none;
+            }
+        }
+
+    </style>
+    <!--Version 3.0.5, from https://github.com/davidbau/seedrandom -->
+    <script src="seedrandom.min.js"></script>
+    <script src="script.js"></script>
+  </head>
+  <body>
+      <div id="content">
+    <h1>AutomatergonE</h1>
+          <p><i>Een herimplementatie van Greta Monach's Automatergon gebaseerd op de Engelse taal.</i></p>
+    <form>
+    <table style="margin: auto; text-align: left;">
+        <tr><td>
+            Start: <input id="start" size="5" type="text" value=1>
+            Vocalen: 
+            <select id="vocalen" name="vocs">
+                <option selected="selected" value="kort">Kort</option>
+                <option value="lang">Lang</option>
+                <option value="beiden">Kort en lang</option>
+            </select>
+            Coda: 
+            <select id="coda" name="coda">
+                <option selected="selected" value="kort">Kort</option>
+                <option value="lang">Lang</option>
+                <option value="beiden">Kort en lang</option>
+            </select>
+        </td></tr>
+        <tr><td>
+            Aantal varianten: <input size="3" id="aantal-varianten" type="text" value=5>
+            Geordend op: 
+            <select id="categorie" name="cats">
+                <option selected="selected" value="vocaal">Vocaal</option>
+                <option value="consonant">Consonant</option>
+            </select> 
+        </td></tr>
+        <tr><td>
+            Aantal kleuren: <input size="2" id="aantal-kleuren" type="text" value=4> 
+            Maximum aantal consonanten: <input size="3" id="max-cons" type="text" value=20>
+        </td></tr>
+        <tr><td>
+            Omvang van het raster: 
+                <input size="3" id="raster-breedte" type="text" value=15> 
+                * 
+                <input size="3" id="raster-hoogte" type="text" value=30>
+        </td></tr>
+        <tr><td>
+            Opvulling van het raster: tussen 
+            <input size="3" id="min-procent" type="text" value=10> 
+            en 
+            <input size="3" id="max-procent" type="text" value=20> procent
+        </td></tr>
+        <tr><td>
+            Ketens van 
+                <input size="2" id="min-keten" type="text" value=1> 
+                tot 
+                <input size="2" id="max-keten" type="text" value=8> 
+            woorden.
+        </td></tr>
+        <tr><td><input type="submit" value="Genereer" onclick="processForm();return false;">
+                <input type="submit" value="Kijk verder" onclick="changeStart();processForm();return false;"></td></tr>
+    </table>
+    </form>
+      
+      <div id="resultaat">
+        <table id="resultaat-inhoud" style="display:none;"></table>
+      </div>
+          <p id="generation-details"></p>
+          <p id="author">Herimplementatie door Emiel van Miltenburg (2024). <span id="github">Code beschikbaar via <a href="https://github.com/evanmiltenburg/Automatergon">GitHub</a>.</span></p>
+      </div>
+  </body>
+</html>
